@@ -1,0 +1,43 @@
+{
+    "name": "ros_jazzy_image",
+    "privileged": true,
+    "remoteUser": "ubuntu",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "USERNAME": "ubuntu"
+        }
+    },
+    "workspaceFolder": "/home/alex/Code/ros_dijikstra_testing",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/alex/Code/ros_dijikstra_testing,type=bind",
+    "customizations": {
+        "vscode": {
+            "extensions":[
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-themes",
+                "twxs.cmake",
+                "donjayamanne.python-extension-pack",
+                "ms-iot.vscode-ros"
+            ]
+        }
+    },
+    "containerEnv": {
+        "DISPLAY": "unix:0",
+        "ROS_AUTOMATIC_DISCOVERY_RANGE": "LOCALHOST",
+        "ROS_DOMAIN_ID": "42"
+    },
+    "runArgs": [
+        "--net=host",
+        "--pid=host",
+        "--ipc=host",
+        "-e", "DISPLAY=${env:DISPLAY}"
+    ],
+    "mounts": [
+       "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
+       "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
+    ],
+    "postCreateCommand": "rosdep update && sudo chown -R $(whoami) /home/alex/Code/ros_dijikstra_testing/"
+
+    // && sudo rosdep install --from-paths src --ignore-src -y  <not sure what this did>
+    //test
+}
