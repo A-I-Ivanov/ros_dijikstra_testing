@@ -13,31 +13,34 @@
     "customizations": {
         "vscode": {
             "extensions":[
+                "althack.ament-task-provider",
+                "betwo.b2-catkin-tools",
                 "ms-vscode.cpptools",
                 "ms-vscode.cpptools-themes",
                 "twxs.cmake",
                 "donjayamanne.python-extension-pack",
-                "ms-iot.vscode-ros"
+                "ms-iot.vscode-ros",
+                "zachflower.uncrustify"
             ]
         }
     },
     "containerEnv": {
-        "DISPLAY": "unix:0",
+        "DISPLAY": "${localEnv:DISPLAY}",
+        "WAYLAND_DISPLAY": "${localEnv:WAYLAND_DISPLAY}",
+		"XDG_RUNTIME_DIR": "${localEnv:XDG_RUNTIME_DIR}",
+		"PULSE_SERVER": "${localEnv:PULSE_SERVER}",
+		"LIBGL_ALWAYS_SOFTWARE": "1", // Needed for software rendering of opengl
         "ROS_AUTOMATIC_DISCOVERY_RANGE": "LOCALHOST",
         "ROS_DOMAIN_ID": "42"
     },
     "runArgs": [
         "--net=host",
         "--pid=host",
+        "--volume=/tmp/.X11-unix:/tmp/.X11-unix",
+		"--volume=/mnt/wslg:/mnt/wslg",
         "--ipc=host",
         "-e", "DISPLAY=${env:DISPLAY}"
     ],
-    "mounts": [
-       "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
-       "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
-    ],
     "postCreateCommand": "rosdep update && sudo chown -R $(whoami) /home/alex/Code/ros_dijikstra_testing/"
 
-    // && sudo rosdep install --from-paths src --ignore-src -y  <not sure what this did>
-    //test
 }
