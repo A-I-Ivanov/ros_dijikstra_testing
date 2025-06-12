@@ -24,6 +24,7 @@ include_directories(
 
 #add targets for project
 add_library(basic_dijikstra basic_dijikstra.cpp)
+add_library(search_node search_node.cpp)
 
 install(
   DIRECTORY include/
@@ -31,7 +32,7 @@ install(
 )
 
 install(
-  TARGETS basic_dijikstra
+  TARGETS basic_dijikstra search_node
   EXPORT export_${PROJECT_NAME}
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
@@ -44,7 +45,7 @@ ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
 #setup testing
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
-  find_package(ament_cmake_gtest REQUIRED) 
+  find_package(ament_cmake_gtest REQUIRED)
   # the following line skips the linter which checks for copyrights
   # comment the line when a copyright and license is added to all source files
   set(ament_cmake_copyright_FOUND TRUE)
