@@ -11,6 +11,10 @@ RUN apt-get update && \
     apt-get install bash-completion -y && \
     rm -rf /var/lib/apt/lists/* 
 
+RUN apt-get update && \
+    apt-get install -y openssh-client && \
+    rm -rf /var/lib/apt/lists/* 
+
 RUN . /opt/ros/$ROS_DISTRO/setup.sh 
 
 #The ros jazzy image has a default user named "ubuntu"    
