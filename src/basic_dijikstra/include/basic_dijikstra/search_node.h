@@ -1,30 +1,34 @@
-# include <queue>
-#include <memory>
-#include <limits>
+#pragma once
 
-class SearchNode{
+#include <limits>
+#include <memory>
+#include <queue>
+
+struct NodeIdx
+{
+  size_t x_idx = 0;
+  size_t y_idx = 0;
+};
+
+class SearchNode
+{
+public:
   using NodePtr = std::shared_ptr<SearchNode>;
 
-public:
   SearchNode(int x, int y);
   // Setters
-  void SetNeighbours(std::vector<NodePtr> neighbors);
   void SetCTG(double cost_to_go);
   void SetCTC(double cost_to_come, NodePtr parent);
 
-  //Getters
+  // Getters
   double CTG();
   double CTC();
   NodePtr Parent();
+  const NodeIdx& Idx();
 
 private:
-  void ResetCTG();
-  void ResetCTC();
-
   double cost_to_go_ = std::numeric_limits<double>::infinity();
   double cost_to_come_ = std::numeric_limits<double>::infinity();
-  int x_idx_;
-  int y_idx_;
+  NodeIdx idx_;
   NodePtr parent_;
-  std::vector<NodePtr> neighbors_;
 };

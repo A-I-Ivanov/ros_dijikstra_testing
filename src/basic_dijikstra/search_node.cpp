@@ -1,29 +1,35 @@
 #include "basic_dijikstra/search_node.h"
 
-
 SearchNode::SearchNode(int x, int y)
 {
-        x_idx_ = x;
-        y_idx_ = y;
-
+  idx_.x_idx = x;
+  idx_.y_idx = y;
 }
+
 // Setters
-void SearchNode::SetNeighbours(std::vector<NodePtr> neighbors){
-        neighbors_ = std::move(neighbors);
+void SearchNode::SetCTG(double cost)
+{
+  cost_to_go_ = cost;
 }
 
-void SearchNode::SetCTG(double cost){
- cost_to_go_ = cost;
+void SearchNode::SetCTC(double cost, NodePtr parent)
+{
+  cost_to_come_ = cost;
+  parent_ = parent;
 }
 
-//Getters
-double SearchNode::GetCTG(){
- return cost_to_go_;
+// Getters
+double SearchNode::CTG()
+{
+  return cost_to_go_;
 }
 
-SearchNode::NodePtr SearchNode::GetParent(){
- return parent_;
+SearchNode::NodePtr SearchNode::Parent()
+{
+  return parent_;
 }
 
-
-  
+const NodeIdx& SearchNode::Idx()
+{
+  return idx_;
+}
