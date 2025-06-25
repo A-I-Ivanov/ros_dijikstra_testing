@@ -90,13 +90,13 @@
         "--max-line-length=100"
     ],
     "C_Cpp.default.intelliSenseMode": "linux-gcc-x86",
-    // "C_Cpp.clang_format_style": "file",
-    // "[c]": {
-    //     "editor.defaultFormatter": "ms-vscode.cpptools"
-    // },
-    // "[cpp]": {
-    //     "editor.defaultFormatter": "ms-vscode.cpptools"
-    // },
+    "C_Cpp.clang_format_style": "file:${workspaceFolder}/config/.clang-format",
+    "[c]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
     "search.exclude": {
         "**/node_modules": true,
         "**/bower_components": true,

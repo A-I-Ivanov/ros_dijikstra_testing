@@ -7,8 +7,6 @@
 #include "search_node.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////
-// Test test //Test test//Test test//Test test//Test test//Test
-// test//Test test//Test test//Test test//Test test //Test test
 struct State
 {
   double x_pos = 0;
